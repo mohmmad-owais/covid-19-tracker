@@ -1,8 +1,8 @@
 import React,{useState, useEffect} from 'react';
 import {fetchDailyData} from '../../api';
-import {Line,Bar} from 'react-chartjs-2';
+import {Line,Bar,Doughnut} from 'react-chartjs-2';
+import { Grid } from '@material-ui/core';
 
-import styles from './Chart.module.css';
 
 function Chart({data : {confirmed ,deaths,recovered} , country}) {
     const [dailyData,setDailyData]=useState({});
@@ -60,10 +60,40 @@ function Chart({data : {confirmed ,deaths,recovered} , country}) {
         ) : null
     )
 
+    const doughnut = ( 
+       confirmed ?( 
+       <Doughnut
+        
+            data={{
+                labels:['Infected','Recovered','Deaths'],
+                datasets: [{
+                label:'People',
+                data: [confirmed.value,recovered.value,deaths.value],
+                backgroundColor:['rgb(0, 0, 255, 0.5)','rgb(0, 255, 0, 0.5)','rgb(255, 0, 0, 0.5)'],
+            }]
+
+            }}
+            options={{
+                    legend : {display: true},
+                    title  : { display : true,text:`Current state in ${country ? country : 'Global'}`},
+                }}
+            
+        />
+        ) : null
+)
+
     return (
-        <div className={styles.container}>
-           {country ? barChart : lineChart}
-        </div>
+        <Grid container justify="center">
+            <Grid item  md={6} sm={12}>
+           {country ? barChart : lineChart} 
+           </Grid>
+           <Grid item md={6} sm={12}>    
+                {doughnut}
+           </Grid>
+           
+           
+           
+        </Grid>
     )
 }
 

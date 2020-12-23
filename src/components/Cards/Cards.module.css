@@ -4,14 +4,22 @@
 
 .card {
   margin: 0 2% !important;
+  padding: 0 50px !important;
+  text-align: center;
+  justify-content: center;
+  display: flex;
 }
 
 .infected {
+  background-color: rgb(0, 0, 255, 0.5) !important ;
+  
   border-bottom: 10px solid rgb(0, 0, 255, 0.5);
 }
 .recovered {
-  border-bottom: 10px solid rgb(0, 255, 0, 0.5);
+  background-color: lightgreen !important ;
+  border-bottom: 10px solid rgba(1, 68, 1, 0.5);
 }
 .deaths {
+  background-color:rgb(255, 0, 0, 0.5) !important ;
   border-bottom: 10px solid rgb(255, 0, 0, 0.5);
 }
